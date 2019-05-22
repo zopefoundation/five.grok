@@ -18,7 +18,7 @@ import os.path
 import sys
 
 from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.location.interfaces import IPossibleSite
+from zope.component.interfaces import IPossibleSite
 from zope import interface
 
 from grokcore.component.interfaces import IContext
