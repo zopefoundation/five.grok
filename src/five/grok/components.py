@@ -45,8 +45,8 @@ from AccessControl import getSecurityManager
 from Acquisition import aq_get
 
 
+interface.implementer(IAttributeAnnotatable, IContext)
 class Model(SimpleItem):
-    interface.implements(IAttributeAnnotatable, IContext)
 
     def __init__(self, id):
         self._id = id
@@ -55,16 +55,19 @@ class Model(SimpleItem):
         return self._id
 
 
+interface.implementer(IAttributeAnnotatable, IContext)
 class Container(Folder):
-    interface.implements(IAttributeAnnotatable, IContext)
+    pass
 
 
+interface.implementer(IPossibleSite)
 class Site(Model, BaseSite):
-    interface.implements(IPossibleSite)
+    pass
 
 
+interface.implementer(IAttributeAnnotatable, IContext)
 class LocalUtility(SimpleItem):
-    interface.implements(IAttributeAnnotatable, IContext)
+    pass
 
 
 class View(grokcore.view.View):
