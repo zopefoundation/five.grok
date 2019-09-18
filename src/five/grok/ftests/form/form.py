@@ -8,8 +8,8 @@
 
   We can test the display form as default view:
 
-  >>> browser.open("http://localhost/manfred")
-  >>> print browser.contents
+  >>> browser.open("http://localhost/manfred/index")
+  >>> print(browser.contents)
   <html>...
   ... Name ...
   ... Age ...
@@ -26,8 +26,8 @@
 
   And if we look back to the display form, we will see new values:
 
-  >>> browser.open("http://localhost/manfred")
-  >>> print browser.contents
+  >>> browser.open("http://localhost/manfred/index")
+  >>> print(browser.contents)
   <html>...
   ... Name ...
   ... Arthur ...

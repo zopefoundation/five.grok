@@ -5,8 +5,8 @@
   >>> from Testing.testbrowser import Browser
   >>> browser = Browser()
   >>> browser.handleErrors = False
-  >>> browser.open("http://localhost/manfred")
-  >>> print browser.contents
+  >>> browser.open("http://localhost/manfred/index")
+  >>> print(browser.contents)
   <html>
   <body>
   <h1>Hello I am manfred!</h1>
@@ -23,6 +23,7 @@ class Mammoth(grok.Model):
         self.id = id
 
 class Index(grok.View):
+    grok.context(Mammoth)
 
     def namespace(self):
         return {'name': self.context.id}

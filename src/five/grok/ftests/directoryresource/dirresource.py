@@ -9,7 +9,7 @@ defined::
   >>> browser.open(
   ...     'http://localhost/'
   ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/file.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Foo resource file's content.
 
 Directoryresource registrations can be differentiated based on layers (and
@@ -18,7 +18,7 @@ skins)::
   >>> browser.open(
   ...     'http://localhost/++skin++another/'
   ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/file.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Anotherfoo resource file's content.
 
 This resource is only available on the particular layer::
@@ -27,7 +27,7 @@ This resource is only available on the particular layer::
   ...     'http://localhost/++skin++another/'
   ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/'
   ...     'anotherfile.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Anotherfoo resource anotherfile's content.
 
   >>> browser.handleErrors = True
@@ -37,31 +37,31 @@ This resource is only available on the particular layer::
   ...     'anotherfile.txt')
   Traceback (most recent call last):
   ...
-  HTTPError: HTTP Error 404: Not Found
+  urllib.error.HTTPError: HTTP Error 404: Not Found
 
 Directoryresources can be registered under an explicit name::
 
   >>> browser.handleErrors = False
   >>> browser.open('http://localhost/++resource++fropple/file.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Bar resource file's content.
 
 Subdirectories are published as directoryresources recusively::
 
   >>> browser.open('http://localhost/++resource++fropple/baz/file.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Baz resource file's content.
 
 A relative path to a directory with resources::
 
   >>> browser.open('http://localhost/++resource++frepple/file.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Baz resource file's content.
 
 An absolute path to a directory with resources::
 
   >>> browser.open('http://localhost/++resource++frupple/file.txt')
-  >>> print browser.contents
+  >>> print(browser.contents)
   Baz resource file's content.
 
 We can restricted-traverse to resources in directories and subdirectories:

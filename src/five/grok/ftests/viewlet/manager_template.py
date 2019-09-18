@@ -6,7 +6,7 @@
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@painting")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <p>Moderne art is sometimes <b>special</b></p>
@@ -15,16 +15,19 @@
 
 """
 from five import grok
+from zope.interface import Interface
 
 class Mammoth(grok.Model):
     pass
 
 class Painting(grok.View):
-    pass
+    grok.context(Mammoth)
+
 
 class Art(grok.ViewletManager):
-
+    grok.context(Mammoth)
     grok.view(Painting)
+
 
 painting = grok.PageTemplate("""\
 <html>

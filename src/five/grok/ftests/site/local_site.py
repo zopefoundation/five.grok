@@ -31,7 +31,7 @@
 
 """
 
-from zope.interface import Interface
+from zope.interface import Interface, implementer
 from five import grok
 
 
@@ -45,16 +45,15 @@ class IEnergyManager(Interface):
         """Shutdown the world.
         """
 
-
+@implementer(IEnergyManager)
 class EnergyManager(grok.LocalUtility):
 
-    grok.implements(IEnergyManager)
 
     def power_on(self):
-        print "Light On!"
+        print("Light On!")
 
     def power_off(self):
-        print "Light Off!"
+        print("Light Off!")
 
 
 class World(grok.Model, grok.Site):

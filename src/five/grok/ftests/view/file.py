@@ -6,7 +6,7 @@
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@painting")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <h1>Hello, world manfred!</h1>
@@ -23,6 +23,6 @@ class Mammoth(grok.Model):
         self.id = id
 
 class Painting(grok.View):
-    pass
+    grok.context(Mammoth)
 
 painting = grok.PageTemplateFile("zope2_template.pt")

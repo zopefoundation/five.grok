@@ -4,12 +4,12 @@
 
   >>> from Testing.testbrowser import Browser
   >>> browser = Browser()
-  >>> browser.handleErrors = False
+  >>> browser.handleErrors = False 
 
   We can test the display form as default view:
 
   >>> browser.open("http://localhost/montparnasse")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>...
   ... Name of the building ...
   ... Number of floors ...
@@ -27,7 +27,7 @@
   And if we look back to the display form, we will see new values:
 
   >>> browser.open("http://localhost/montparnasse")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>...
   ... Name of the building ...
   ... Tour Montparnasse ...
@@ -48,20 +48,21 @@ class IHouse(interface.Interface):
     height = schema.Int(title=u"Number of floors")
 
 
+@interface.implementer(IHouse)
 class House(grok.Container):
 
-    grok.implements(IHouse)
 
     name = FieldProperty(IHouse['name'])
     height = FieldProperty(IHouse['height'])
 
 
 class Edit(grok.EditForm):
+    grok.context(House)
 
     form_fields = grok.AutoFields(House)
 
 
 class Index(grok.DisplayForm):
-    pass
+    grok.context(House)
 
 
