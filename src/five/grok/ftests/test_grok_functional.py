@@ -9,19 +9,21 @@
 # WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
-#
-##############################################################################
-
-import unittest
-import doctest
-
+from five.grok.testing import FunctionalLayer
+from pkg_resources import resource_listdir
 from Testing.ZopeTestCase import FunctionalDocTestSuite
 from Testing.ZopeTestCase import installProduct
 from Testing.ZopeTestCase.zopedoctest.functional import getRootFolder, sync
-from five.grok.testing import FunctionalLayer
-from pkg_resources import resource_listdir
+from zope.testing import renormalizing
+import doctest
+import re
+import unittest
+
 
 installProduct('PageTemplates')
+
+checker = renormalizing.RENormalizing([
+    (re.compile(r'urllib.error.HTTPError:', re.M), 'HTTPError:'),])
 
 
 def suiteFromPackage(name):
@@ -40,6 +42,7 @@ def suiteFromPackage(name):
         dottedname = 'five.grok.ftests.%s.%s' % (name, filename[:-3])
         test = FunctionalDocTestSuite(
             dottedname,
+            checker=checker,
             extraglobs=dict(getRootFolder=getRootFolder,
                             sync=sync),
             optionflags=(doctest.ELLIPSIS+

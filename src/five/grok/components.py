@@ -20,7 +20,7 @@ import sys
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.component.interfaces import IPossibleSite
 from zope import interface
-
+from grokcore.component import implementer
 from grokcore.component.interfaces import IContext
 from grokcore.view.components import PageTemplate
 from grokcore.viewlet.components import ViewletManager as BaseViewletManager
@@ -45,7 +45,7 @@ from AccessControl import getSecurityManager
 from Acquisition import aq_get
 
 
-interface.implementer(IAttributeAnnotatable, IContext)
+@implementer(IAttributeAnnotatable, IContext)
 class Model(SimpleItem):
 
     def __init__(self, id):
@@ -55,17 +55,17 @@ class Model(SimpleItem):
         return self._id
 
 
-interface.implementer(IAttributeAnnotatable, IContext)
+@implementer(IAttributeAnnotatable, IContext)
 class Container(Folder):
     pass
 
 
-interface.implementer(IPossibleSite)
+@implementer(IPossibleSite)
 class Site(Model, BaseSite):
     pass
 
 
-interface.implementer(IAttributeAnnotatable, IContext)
+@implementer(IAttributeAnnotatable, IContext)
 class LocalUtility(SimpleItem):
     pass
 

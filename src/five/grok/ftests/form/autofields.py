@@ -48,9 +48,8 @@ class IMammoth(interface.Interface):
     age = schema.Int(title=u"Age")
 
 
+@grok.implementer(IMammoth)
 class Mammoth(grok.Model):
-
-    grok.implements(IMammoth)
 
     name = FieldProperty(IMammoth['name'])
     age = FieldProperty(IMammoth['age'])
@@ -61,6 +60,6 @@ class Edit(grok.EditForm):
 
 
 class Index(grok.DisplayForm):
-    grok.context(interface.Interface)
+    grok.context(Mammoth)
 
 

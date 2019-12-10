@@ -4,7 +4,7 @@
 
   >>> from Testing.testbrowser import Browser
   >>> browser = Browser()
-  >>> browser.handleErrors = False 
+  >>> browser.handleErrors = False
 
   We can test the display form as default view:
 
@@ -48,7 +48,7 @@ class IHouse(interface.Interface):
     height = schema.Int(title=u"Number of floors")
 
 
-@interface.implementer(IHouse)
+@grok.implementer(IHouse)
 class House(grok.Container):
 
 
