@@ -14,3 +14,8 @@ eggs
 local.cfg
 parts
 var
+.coverage*
+coverage.xml
+.tox/
+htmlcov/
+reports/

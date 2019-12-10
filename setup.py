@@ -61,5 +61,5 @@ setup(name='five.grok',
       extras_require={
         'form': form_requires,
         'layout': layout_requires,
-        'test': form_requires},
+        'test': test_requires},
       )
