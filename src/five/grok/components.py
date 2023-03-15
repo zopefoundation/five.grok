@@ -184,7 +184,7 @@ class ViewletManager(BaseViewletManager, ZopeTwoBaseViewletManager):
         return ZopeTwoBaseViewletManager.filter(self, viewlets)
 
     def __getitem__(self, key):
-        # XXX Need Zope 2 __getitem__
+        # XXX Need Zope 4 __getitem__
         return ZopeTwoBaseViewletManager.__getitem__(self, key)
 
 
