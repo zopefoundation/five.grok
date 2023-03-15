@@ -23,7 +23,9 @@ class Mammoth(grok.Model):
         super(Mammoth, self).__init__(id=id)
         self.id = id
 
+
 class Painting(grok.View):
     grok.context(Mammoth)
+
 
 painting = grok.PageTemplateFile("zope2_template.pt")

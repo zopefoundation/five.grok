@@ -23,11 +23,13 @@ class Mammoth(grok.Model):
         super(Mammoth, self).__init__(id)
         self.id = id
 
+
 class Index(grok.View):
     grok.context(Mammoth)
 
     def namespace(self):
         return {'name': self.context.id}
+
 
 index = grok.PageTemplate("""\
 <html>

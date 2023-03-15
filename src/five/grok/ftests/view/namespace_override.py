@@ -35,4 +35,3 @@ class Index(grok.View):
 
     def namespace(self):
         return {'view': CustomViewClass()}
-

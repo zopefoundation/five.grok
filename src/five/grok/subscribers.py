@@ -29,4 +29,3 @@ def addSiteHandler(site, event):
 
     """
     make_objectmanager_site(site)
-

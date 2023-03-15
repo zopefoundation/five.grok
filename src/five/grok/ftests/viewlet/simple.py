@@ -23,8 +23,10 @@ from five import grok
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
     grok.context(Interface)
+
 
 painting = grok.PageTemplate("""\
 <html>
@@ -34,6 +36,7 @@ painting = grok.PageTemplate("""\
 </body>
 </html>
 """)
+
 
 class Art(grok.ViewletManager):
     grok.view(Painting)
@@ -56,12 +59,14 @@ modern = grok.PageTemplate("""\
 <h2>Modern Art</h2>
 """)
 
+
 class Classic(grok.Viewlet):
 
     grok.context(Interface)
     grok.order(20)
     grok.view(Painting)
     grok.viewletmanager(Art)
+
 
 classic = grok.PageTemplate("""\
 <h2>Classic Art</h2>

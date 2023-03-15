@@ -41,6 +41,7 @@ class IBranding(interface.Interface):
     def getBrands():
         """Return a list of brands."""
 
+
 @interface.implementer(IBranding)
 class Branding(grok.Annotation):
     grok.context(Mammoth)

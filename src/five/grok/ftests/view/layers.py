@@ -17,7 +17,8 @@
   >>> print(browser.contents)
   Pretty
 
-  >>> browser.open("http://localhost/++skin++myskin/manfred/@@evenmoredrawings")
+  >>> browser.open(
+  ...    "http://localhost/++skin++myskin/manfred/@@evenmoredrawings")
   >>> print(browser.contents)
   Awesome
 

@@ -47,9 +47,9 @@ class IEnergyManager(Interface):
         """Shutdown the world.
         """
 
+
 @implementer(IEnergyManager)
 class EnergyManager(grok.LocalUtility):
-
 
     def power_on(self):
         print("Light On!")
@@ -61,6 +61,3 @@ class EnergyManager(grok.LocalUtility):
 class World(grok.Model, grok.Site):
 
     grok.local_utility(EnergyManager, IEnergyManager)
-
-
-

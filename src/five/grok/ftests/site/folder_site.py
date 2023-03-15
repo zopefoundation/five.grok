@@ -53,7 +53,7 @@ class ConfigurableEnergyManager(grok.LocalUtility):
     cool_option = 'clean'
 
     def power_on(self):
-        print("Light "+ self.cool_option + " On!")
+        print("Light " + self.cool_option + " On!")
 
     def power_off(self):
         print("Light " + self.cool_option + " Off!")
@@ -62,10 +62,10 @@ class ConfigurableEnergyManager(grok.LocalUtility):
 def setup_energy(manager):
     manager.cool_option = 'Red'
 
+
 class World(grok.Container, grok.Site):
 
     grok.local_utility(ConfigurableEnergyManager, IEnergyManager,
                        public=True,
                        name_in_container='energy',
                        setup=setup_energy)
-

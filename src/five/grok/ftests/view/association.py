@@ -22,7 +22,7 @@ from five import grok
 class Mammoth(grok.Model):
     pass
 
+
 class Art(grok.View):
     grok.context(Interface)
     grok.template("painting")
-

@@ -8,7 +8,8 @@ defined::
   >>> browser.handleErrors = False
   >>> browser.open(
   ...     'http://localhost/'
-  ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/file.txt')
+  ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/'
+  ...     'file.txt')
   >>> print(browser.contents)
   Foo resource file's content.
 
@@ -17,7 +18,8 @@ skins)::
 
   >>> browser.open(
   ...     'http://localhost/++skin++another/'
-  ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/file.txt')
+  ...     '++resource++five.grok.ftests.directoryresource.fixture.resource/'
+  ...     'file.txt')
   >>> print(browser.contents)
   Anotherfoo resource file's content.
 
@@ -66,12 +68,14 @@ An absolute path to a directory with resources::
 
 We can restricted-traverse to resources in directories and subdirectories:
 
-  >>> app.restrictedTraverse('++resource++five.grok.ftests.directoryresource.fixture.resource/file.txt')
+  >>> app.restrictedTraverse(
+  ...    '++resource++five.grok.ftests.directoryresource.fixture.resource/'
+  ...    'file.txt')
   <Products.Five.browser.resource.FileResource object at ...>
-  
+
   >>> app.restrictedTraverse('++resource++frupple/file.txt')
   <Products.Five.browser.resource.FileResource object at ...>
-  
+
   >>> app.restrictedTraverse('++resource++fropple/baz/file.txt')
   <Products.Five.browser.resource.FileResource object at ...>
 

@@ -32,6 +32,7 @@ class IId(Interface):
     def id():
         """Returns the ID of the object"""
 
+
 class SimpleItemIdAdapter(grok.Adapter):
     grok.implements(IId)
     grok.context(ISimpleItem)
@@ -39,11 +40,14 @@ class SimpleItemIdAdapter(grok.Adapter):
     def id(self):
         return self.context.getId()
 
+
 class A(object):
     pass
 
+
 class IB(Interface):
     pass
+
 
 @grok.adapter(A)
 @grok.implementer(IB)

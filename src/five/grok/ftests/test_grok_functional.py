@@ -27,7 +27,7 @@ from five.grok.testing import FunctionalLayer
 installProduct('PageTemplates')
 
 checker = renormalizing.RENormalizing([
-    (re.compile(r'urllib.error.HTTPError:', re.M), 'HTTPError:'),])
+    (re.compile(r'urllib.error.HTTPError:', re.M), 'HTTPError:'), ])
 
 
 def suiteFromPackage(name):
@@ -49,8 +49,8 @@ def suiteFromPackage(name):
             checker=checker,
             extraglobs=dict(getRootFolder=getRootFolder,
                             sync=sync),
-            optionflags=(doctest.ELLIPSIS+
-                         doctest.NORMALIZE_WHITESPACE+
+            optionflags=(doctest.ELLIPSIS +
+                         doctest.NORMALIZE_WHITESPACE +
                          doctest.REPORT_NDIFF))
         test.layer = FunctionalLayer
 
@@ -60,6 +60,6 @@ def suiteFromPackage(name):
 
 def test_suite():
     suite = unittest.TestSuite()
-    for name in ['directoryresource', 'view', 'viewlet','form', 'site']:
+    for name in ['directoryresource', 'view', 'viewlet', 'form', 'site']:
         suite.addTest(suiteFromPackage(name))
     return suite

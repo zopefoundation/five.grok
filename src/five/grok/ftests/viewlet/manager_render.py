@@ -20,8 +20,10 @@ from five import grok
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
     grok.context(Mammoth)
+
 
 class Art(grok.ViewletManager):
     grok.context(Mammoth)
@@ -29,6 +31,7 @@ class Art(grok.ViewletManager):
 
     def render(self):
         return '<p>Art is beautiful</p>'
+
 
 painting = grok.PageTemplate("""\
 <html>

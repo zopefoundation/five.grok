@@ -38,6 +38,6 @@ class ViewAbsoluteURL(absoluteurl.AbsoluteURL, grok.MultiAdapter):
             (self._obj(), self.request), IAbsoluteURL).breadcrumbs()
 
         obj_breadcrumbs += ({'name': self.context.__view_name__,
-                                'url': self()},)
+                             'url': self()},)
 
         return obj_breadcrumbs

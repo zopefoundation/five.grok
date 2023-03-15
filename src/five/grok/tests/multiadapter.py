@@ -56,11 +56,14 @@ from five import grok
 class Cave(SimpleItem):
     pass
 
+
 class Fireplace(SimpleItem):
     pass
 
+
 class IHome(interface.Interface):
     pass
+
 
 class Home(grok.MultiAdapter):
     grok.adapts(Cave, Fireplace)
@@ -69,6 +72,7 @@ class Home(grok.MultiAdapter):
     def __init__(self, cave, fireplace):
         self.cave = cave
         self.fireplace = fireplace
+
 
 class Home2(grok.MultiAdapter):
     grok.adapts(Cave, Fireplace)
@@ -79,8 +83,10 @@ class Home2(grok.MultiAdapter):
         self.cave = cave
         self.fireplace = fireplace
 
+
 class IFireplace(interface.Interface):
     pass
+
 
 class Home3(grok.MultiAdapter):
     grok.adapts(Cave, Fireplace)

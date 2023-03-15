@@ -27,8 +27,10 @@ from five import grok
 class Mammoth(grok.Model):
     teeth = u"Blue"
 
+
 class Index(grok.View):
     grok.context(Mammoth)
+
 
 index = grok.PageTemplate("""\
 <html>

@@ -63,5 +63,3 @@ class Edit(grok.EditForm):
 
 class Index(grok.DisplayForm):
     grok.context(Mammoth)
-
-

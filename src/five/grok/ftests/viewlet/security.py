@@ -25,16 +25,16 @@
   </html>
 
 """
-from zope.interface import Interface
-
 from five import grok
 
 
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
     grok.context(Mammoth)
+
 
 painting = grok.PageTemplate("""\
 <html>
@@ -43,6 +43,7 @@ painting = grok.PageTemplate("""\
 </body>
 </html>
 """)
+
 
 class Museum(grok.ViewletManager):
     grok.context(Mammoth)
@@ -56,6 +57,7 @@ class Gallery(grok.Viewlet):
 
     def render(self):
         return u'<p>A common gallery with rembrandt</p>'
+
 
 class Reserve(grok.Viewlet):
     grok.context(Mammoth)

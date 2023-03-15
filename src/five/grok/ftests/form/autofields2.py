@@ -53,7 +53,6 @@ class IHouse(interface.Interface):
 @grok.implementer(IHouse)
 class House(grok.Container):
 
-
     name = FieldProperty(IHouse['name'])
     height = FieldProperty(IHouse['height'])
 
@@ -66,5 +65,3 @@ class Edit(grok.EditForm):
 
 class Index(grok.DisplayForm):
     grok.context(House)
-
-

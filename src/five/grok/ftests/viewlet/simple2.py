@@ -15,16 +15,16 @@
   </html>
 
 """
-from zope.interface import Interface
-
 from five import grok
 
 
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
     grok.context(Mammoth)
+
 
 painting = grok.PageTemplate("""\
 <html>
@@ -34,9 +34,11 @@ painting = grok.PageTemplate("""\
 </html>
 """)
 
+
 class Art(grok.ViewletManager):
     grok.context(Mammoth)
     grok.view(Painting)
+
 
 class Modern(grok.Viewlet):
     grok.context(Mammoth)
@@ -46,10 +48,12 @@ class Modern(grok.Viewlet):
     def render(self):
         return u'<p>Mordern art is recent</p>'
 
+
 class Classic(grok.Viewlet):
     grok.context(Mammoth)
     grok.view(Painting)
     grok.viewletmanager(Art)
+
 
 classic = grok.PageTemplate("""\
 <p>Classic art is not recent.</p>
