@@ -47,9 +47,11 @@ specify the one to use:
   True
 """
 
-from five import grok
-from zope import interface
 from OFS.SimpleItem import SimpleItem
+from zope import interface
+
+from five import grok
+
 
 class Cave(SimpleItem):
     pass

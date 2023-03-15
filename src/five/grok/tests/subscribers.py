@@ -25,10 +25,12 @@ The decorated event handling function can also be called directly:
 
 """
 import zope.event
-from five import grok
-from zope.component.interfaces import IObjectEvent, ObjectEvent
-
 from OFS.interfaces import ISimpleItem
+from zope.interface.interfaces import IObjectEvent
+from zope.interface.interfaces import ObjectEvent
+
+from five import grok
+
 
 items = []
 items2 = []

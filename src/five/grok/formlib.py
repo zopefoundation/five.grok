@@ -12,10 +12,10 @@
 #
 ##############################################################################
 
-from zope import interface
-from zope.interface.interfaces import IInterface
-from zope.formlib import form
 from grokcore.formlib.formlib import interface_seen
+from zope import interface
+from zope.formlib import form
+from zope.interface.interfaces import IInterface
 
 
 FORBIDDEN_PACKAGES = ['OFS.interfaces', 'webdav.interfaces',]

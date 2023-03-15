@@ -1,5 +1,8 @@
-from setuptools import setup, find_packages
 import os
+
+from setuptools import find_packages
+from setuptools import setup
+
 
 version = '1.4dev'
 
@@ -57,6 +60,8 @@ setup(name='five.grok',
         'zope.pagetemplate',
         'zope.publisher',
         'zope.traversing',
+        'zope.tal < 5; python_version=="2.7"',  # transitive
+        'DateTime < 5; python_version=="2.7"',  # transitive
         ],
       extras_require={
         'form': form_requires,

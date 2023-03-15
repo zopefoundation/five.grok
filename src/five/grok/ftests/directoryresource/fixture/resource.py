@@ -1,5 +1,7 @@
 import os
+
 from five import grok
+
 
 class DirectoryResourceFoo(grok.DirectoryResource):
     grok.path('foo')

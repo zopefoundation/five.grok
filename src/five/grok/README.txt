@@ -196,7 +196,7 @@ Global utility
 We can create a local utility. When a ``CaveWoman`` is added, we can
 lookup our utility and use it::
 
-    <<< from zope.container.interfaces import IObjectAddedEvent
+    <<< from zope.lifecycleevent.interfaces import IObjectAddedEvent
     <<< from zope.component import getUtility
 
     <<< class ICaveInformations(Interface):

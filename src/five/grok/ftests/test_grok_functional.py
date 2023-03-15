@@ -9,15 +9,19 @@
 # WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
-from five.grok.testing import FunctionalLayer
-from pkg_resources import resource_listdir
-from Testing.ZopeTestCase import FunctionalDocTestSuite
-from Testing.ZopeTestCase import installProduct
-from Testing.ZopeTestCase.zopedoctest.functional import getRootFolder, sync
-from zope.testing import renormalizing
 import doctest
 import re
 import unittest
+
+from pkg_resources import resource_listdir
+
+from Testing.ZopeTestCase import FunctionalDocTestSuite
+from Testing.ZopeTestCase import installProduct
+from Testing.ZopeTestCase.zopedoctest.functional import getRootFolder
+from Testing.ZopeTestCase.zopedoctest.functional import sync
+from zope.testing import renormalizing
+
+from five.grok.testing import FunctionalLayer
 
 
 installProduct('PageTemplates')

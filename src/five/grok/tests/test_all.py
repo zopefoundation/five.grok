@@ -12,10 +12,11 @@
 #
 ##############################################################################
 
-import unittest
 import doctest
+import unittest
 
 from Testing.ZopeTestCase import FunctionalDocTestSuite
+
 from five.grok.testing import FunctionalLayer
 
 

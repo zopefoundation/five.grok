@@ -49,8 +49,10 @@ The same works with views that define update():
   TypeError: Missing argument to update(): message
 
 """
-from five import grok
 from zope.interface import Interface
+
+from five import grok
+
 
 class Mammoth(grok.Model):
     pass

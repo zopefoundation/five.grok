@@ -13,10 +13,11 @@
 ##############################################################################
 
 import grokcore.component
-from zope.container.interfaces import IObjectAddedEvent
 from five.localsitemanager import make_objectmanager_site
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
 
 from five.grok.components import Site
+
 
 @grokcore.component.subscribe(Site, IObjectAddedEvent)
 def addSiteHandler(site, event):

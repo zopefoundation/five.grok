@@ -15,8 +15,10 @@
   </html>
 
 """
-from five import grok
 from zope.interface import Interface
+
+from five import grok
+
 
 class Mammoth(grok.Model):
     pass

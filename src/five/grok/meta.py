@@ -12,19 +12,20 @@
 #
 ##############################################################################
 
-from five.grok import components, interfaces
+import grokcore.component
+import grokcore.security
+import grokcore.view
+import martian
+from AccessControl.class_init import InitializeClass as initializeClass
+from AccessControl.security import protectClass
+from AccessControl.security import protectName
 from grokcore.view.meta.directoryresource import _get_resource_path
 from zope import interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 import five.grok
-import grokcore.component
-import grokcore.security
-import grokcore.view
-import martian
-
-from AccessControl.security import protectClass, protectName
-from App.class_init import InitializeClass as initializeClass
+from five.grok import components
+from five.grok import interfaces
 
 
 if interfaces.HAVE_FORMLIB:

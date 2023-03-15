@@ -37,9 +37,11 @@
 
 """
 
-from five import grok
-from zope import interface, schema
+from zope import interface
+from zope import schema
 from zope.schema.fieldproperty import FieldProperty
+
+from five import grok
 
 
 class IMammoth(interface.Interface):

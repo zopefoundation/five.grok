@@ -23,6 +23,7 @@ The default view name for a model is 'index':
 """
 from five import grok
 
+
 class Mammoth(grok.Model):
     teeth = u"Blue"
 

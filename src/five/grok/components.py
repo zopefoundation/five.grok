@@ -12,37 +12,33 @@
 #
 ##############################################################################
 
-import martian
-
 import os.path
 import sys
 
-from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.component.interfaces import IPossibleSite
-from zope import interface
+import grokcore.view
+import martian
+from AccessControl import getSecurityManager
+from Acquisition import aq_get
 from grokcore.component import implementer
 from grokcore.component.interfaces import IContext
+from grokcore.site.components import BaseSite
 from grokcore.view.components import PageTemplate
 from grokcore.viewlet.components import ViewletManager as BaseViewletManager
-from grokcore.site.components import BaseSite
-import grokcore.view
-
-from five.grok.interfaces import HAVE_FORMLIB
-
+from OFS.Folder import Folder
+from OFS.SimpleItem import SimpleItem
+from Products.Five.browser import resource
 from Products.Five.browser.pagetemplatefile import ViewMapper
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser.pagetemplatefile import getEngine
-from Products.Five.browser import resource
-from Products.Five.viewlet.manager import ViewletManagerBase as \
-    ZopeTwoBaseViewletManager
+from Products.Five.viewlet.manager import \
+    ViewletManagerBase as ZopeTwoBaseViewletManager
+from Products.PageTemplates.Expressions import SecureModuleImporter
+from zope import interface
+from zope.annotation.interfaces import IAttributeAnnotatable
+from zope.component.interfaces import IPossibleSite
 from zope.pagetemplate.pagetemplate import PageTemplate as ZopePageTemplate
 
-from Products.PageTemplates.Expressions import SecureModuleImporter
-from OFS.SimpleItem import SimpleItem
-from OFS.Folder import Folder
-
-from AccessControl import getSecurityManager
-from Acquisition import aq_get
+from five.grok.interfaces import HAVE_FORMLIB
 
 
 @implementer(IAttributeAnnotatable, IContext)
@@ -194,8 +190,8 @@ class ViewletManager(BaseViewletManager, ZopeTwoBaseViewletManager):
 if HAVE_FORMLIB:
     from five.formlib import formbase
     from grokcore.formlib.components import GrokForm as BaseGrokForm
-    from grokcore.formlib.components import default_display_template, \
-        default_form_template
+    from grokcore.formlib.components import default_display_template
+    from grokcore.formlib.components import default_form_template
 
     # forms from formlib
 

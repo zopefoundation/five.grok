@@ -21,10 +21,12 @@ Regetting the adapter will yield the same annotation storage:
 
 """
 
-from five import grok
+from BTrees.OOBTree import OOTreeSet
 from grokcore.annotation.components import Model
 from zope import interface
-from BTrees.OOBTree import OOTreeSet
+
+from five import grok
+
 
 class Mammoth(Model):
     def __init__(self, name):

@@ -21,9 +21,11 @@ Testing that grokcore adapters work under Zope2:
   'adapted to IB'
 
 """
-from zope.interface import Interface
-from five import grok
 from OFS.interfaces import ISimpleItem
+from zope.interface import Interface
+
+from five import grok
+
 
 class IId(Interface):
 

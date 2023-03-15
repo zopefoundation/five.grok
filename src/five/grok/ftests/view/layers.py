@@ -22,8 +22,9 @@
   Awesome
 
 """
-from five import grok
 from zope.interface import Interface
+
+from five import grok
 
 
 class MySkinLayer(grok.IBrowserRequest):
