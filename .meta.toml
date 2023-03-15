@@ -28,6 +28,16 @@ additional-config = [
     "    src/five/grok/__init__.py: F401 F403",
     ]
 
+[manifest]
+additional-rules = [
+    "include *.zcml",
+    "recursive-include docs *.txt",
+    "recursive-include src *.css",
+    "recursive-include src *.pt",
+    "recursive-include src *.txt",
+    "recursive-include src *.zcml",
+    ]
+
 [github-actions]
 additional-config = [
     "- [\"2.7\",   \"py27\"]",
