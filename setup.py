@@ -1,5 +1,3 @@
-import os
-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -20,8 +18,8 @@ test_requires = form_requires + layout_requires + [
 setup(name='five.grok',
       version=version,
       description="Grok-like layer for Zope",
-      long_description=open("README.txt").read() + "\n" +
-      open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=open("README.rst").read() + "\n" +
+      open("CHANGES.rst").read(),
       classifiers=[
           "Environment :: Web Environment",
           "Intended Audience :: Developers",
