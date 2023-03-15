@@ -8,8 +8,8 @@
 
   We can test the display form as default view:
 
-  >>> browser.open("http://localhost/manfred")
-  >>> print browser.contents
+  >>> browser.open("http://localhost/manfred/index")
+  >>> print(browser.contents)
   <html>...
   ... Name ...
   ... Age ...
@@ -26,8 +26,8 @@
 
   And if we look back to the display form, we will see new values:
 
-  >>> browser.open("http://localhost/manfred")
-  >>> print browser.contents
+  >>> browser.open("http://localhost/manfred/index")
+  >>> print(browser.contents)
   <html>...
   ... Name ...
   ... Arthur ...
@@ -37,9 +37,12 @@
 
 """
 
-from five import grok
-from zope import interface, schema
+from zope import interface
+from zope import schema
 from zope.schema.fieldproperty import FieldProperty
+
+from five import grok
+
 
 class IMammoth(interface.Interface):
 
@@ -63,4 +66,3 @@ class Edit(grok.EditForm):
 class Index(grok.DisplayForm):
 
     grok.context(IMammoth)
-

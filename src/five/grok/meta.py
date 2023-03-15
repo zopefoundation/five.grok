@@ -12,19 +12,20 @@
 #
 ##############################################################################
 
-from five.grok import components, interfaces
+import grokcore.component
+import grokcore.security
+import grokcore.view
+import martian
+from AccessControl.class_init import InitializeClass as initializeClass
+from AccessControl.security import protectClass
+from AccessControl.security import protectName
 from grokcore.view.meta.directoryresource import _get_resource_path
 from zope import interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 import five.grok
-import grokcore.component
-import grokcore.security
-import grokcore.view
-import martian
-
-from AccessControl.security import protectClass, protectName
-from App.class_init import InitializeClass as initializeClass
+from five.grok import components
+from five.grok import interfaces
 
 
 if interfaces.HAVE_FORMLIB:
@@ -52,17 +53,17 @@ class ViewSecurityGrokker(martian.ClassGrokker):
             permission = 'zope.Public'
 
         config.action(
-            discriminator = ('five:protectClass', factory),
-            callable = protectClass,
-            args = (factory, permission)
-            )
+            discriminator=('five:protectClass', factory),
+            callable=protectClass,
+            args=(factory, permission)
+        )
 
         # Protect the class
         config.action(
-            discriminator = ('five:initialize:class', factory),
-            callable = initializeClass,
-            args = (factory,)
-            )
+            discriminator=('five:initialize:class', factory),
+            callable=initializeClass,
+            args=(factory,)
+        )
 
         return True
 
@@ -84,7 +85,7 @@ def _register_resource(config, resource_path, name, layer):
         discriminator=('adapter', adapts, provides, name),
         callable=grokcore.component.util.provideAdapter,
         args=(resource_factory, adapts, provides, name),
-        )
+    )
     return True
 
 
@@ -116,25 +117,24 @@ class ViewletSecurityGrokker(martian.ClassGrokker):
         if permission is None:
             permission = 'zope.Public'
 
-        attributes = ['update', 'render',]
+        attributes = ['update', 'render', ]
         config.action(
-            discriminator = ('five:protectClass', factory),
-            callable = protectClass,
-            args = (factory, permission)
-            )
+            discriminator=('five:protectClass', factory),
+            callable=protectClass,
+            args=(factory, permission)
+        )
         for attribute in attributes:
             config.action(
-                discriminator = ('five:protectName', factory, attribute),
-                callable = protectName,
-                args = (factory, attribute, permission)
-                )
+                discriminator=('five:protectName', factory, attribute),
+                callable=protectName,
+                args=(factory, attribute, permission)
+            )
 
         # Protect the class
         config.action(
-            discriminator = ('five:initialize:class', factory),
-            callable = initializeClass,
-            args = (factory,)
-            )
+            discriminator=('five:initialize:class', factory),
+            callable=initializeClass,
+            args=(factory,)
+        )
 
         return True
-

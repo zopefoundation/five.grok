@@ -9,6 +9,8 @@ You can subscribe to events using the @grok.subscribe decorator:
   >>> from OFS.SimpleItem import SimpleItem
   >>> item = SimpleItem()
   >>> item.id = 'one'
+  >>> import zope.event
+  >>> from zope.interface.interfaces import ObjectEvent
   >>> zope.event.notify(ObjectEvent(item))
   >>> items
   ['one']
@@ -24,18 +26,20 @@ The decorated event handling function can also be called directly:
   ['one', 'two']
 
 """
-import zope.event
-from five import grok
-from zope.component.interfaces import IObjectEvent, ObjectEvent
-
 from OFS.interfaces import ISimpleItem
+from zope.interface.interfaces import IObjectEvent
+
+from five import grok
+
 
 items = []
 items2 = []
 
+
 @grok.subscribe(ISimpleItem, IObjectEvent)
 def itemAdded(item, event):
     items.append(item.getId())
+
 
 @grok.subscribe(ISimpleItem, IObjectEvent)
 def itemAddedInstance(item, event):

@@ -12,41 +12,36 @@
 #
 ##############################################################################
 
-import martian
-
 import os.path
 import sys
 
-from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.location.interfaces import IPossibleSite
-from zope import interface
-
+import grokcore.view
+import martian
+from AccessControl import getSecurityManager
+from Acquisition import aq_get
+from grokcore.component import implementer
 from grokcore.component.interfaces import IContext
+from grokcore.site.components import BaseSite
 from grokcore.view.components import PageTemplate
 from grokcore.viewlet.components import ViewletManager as BaseViewletManager
-from grokcore.site.components import BaseSite
-import grokcore.view
-
-from five.grok.interfaces import HAVE_FORMLIB
-
+from OFS.Folder import Folder
+from OFS.SimpleItem import SimpleItem
+from Products.Five.browser import resource
 from Products.Five.browser.pagetemplatefile import ViewMapper
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser.pagetemplatefile import getEngine
-from Products.Five.browser import resource
-from Products.Five.viewlet.manager import ViewletManagerBase as \
-    ZopeTwoBaseViewletManager
+from Products.Five.viewlet.manager import \
+    ViewletManagerBase as ZopeTwoBaseViewletManager
+from Products.PageTemplates.Expressions import SecureModuleImporter
+from zope.annotation.interfaces import IAttributeAnnotatable
+from zope.component.interfaces import IPossibleSite
 from zope.pagetemplate.pagetemplate import PageTemplate as ZopePageTemplate
 
-from Products.PageTemplates.Expressions import SecureModuleImporter
-from OFS.SimpleItem import SimpleItem
-from OFS.Folder import Folder
-
-from AccessControl import getSecurityManager
-from Acquisition import aq_get
+from five.grok.interfaces import HAVE_FORMLIB
 
 
+@implementer(IAttributeAnnotatable, IContext)
 class Model(SimpleItem):
-    interface.implements(IAttributeAnnotatable, IContext)
 
     def __init__(self, id):
         self._id = id
@@ -55,16 +50,19 @@ class Model(SimpleItem):
         return self._id
 
 
+@implementer(IAttributeAnnotatable, IContext)
 class Container(Folder):
-    interface.implements(IAttributeAnnotatable, IContext)
+    pass
 
 
+@implementer(IPossibleSite)
 class Site(Model, BaseSite):
-    interface.implements(IPossibleSite)
+    pass
 
 
+@implementer(IAttributeAnnotatable, IContext)
 class LocalUtility(SimpleItem):
-    interface.implements(IAttributeAnnotatable, IContext)
+    pass
 
 
 class View(grokcore.view.View):
@@ -79,6 +77,7 @@ class View(grokcore.view.View):
     def redirect(self, url, status=302, trusted=False):
         """ We don't need trusted in Zope2 """
         self.request.response.redirect(url, status=status)
+
 
 class ViewAwareZopePageTemplate(ZopePageTemplate):
 
@@ -106,7 +105,7 @@ class ViewAwareZopePageTemplate(ZopePageTemplate):
                          root=root,
                          modules=SecureModuleImporter,
                          traverse_subpath=[],  # BBB, never really worked
-                         user = getSecurityManager().getUser())
+                         user=getSecurityManager().getUser())
         return namespace
 
 
@@ -148,12 +147,13 @@ class ZopeTwoDirectoryResource(resource.DirectoryResource):
     # Allow traversal to contained resources from protected code
     __allow_access_to_unprotected_subobjects__ = True
 
-    # Allow subdirectories to work with restrictedTraverse() (in Zope >= 2.12.6)
+    # Allow subdirectories to work with restrictedTraverse() (in Zope >=
+    # 2.12.6)
     __roles__ = None
 
     resource_factories = {}
     for type, factory in (
-        resource.DirectoryResource.resource_factories.items()):
+            resource.DirectoryResource.resource_factories.items()):
         if factory is resource.PageTemplateResourceFactory:
             continue
         resource_factories[type] = factory
@@ -168,9 +168,8 @@ class ZopeTwoDirectoryResourceFactory(resource.DirectoryResourceFactory):
 
     def __call__(self, request):
         resource = ZopeTwoDirectoryResource(self.__rsrc, request)
-        resource.__name__ = self.__name # We need to add name
+        resource.__name__ = self.__name  # We need to add name
         return resource
-
 
 
 # Viewlet / Viewlet Manager
@@ -185,14 +184,15 @@ class ViewletManager(BaseViewletManager, ZopeTwoBaseViewletManager):
         return ZopeTwoBaseViewletManager.filter(self, viewlets)
 
     def __getitem__(self, key):
-        # XXX Need Zope 2 __getitem__
+        # XXX Need Zope 4 __getitem__
         return ZopeTwoBaseViewletManager.__getitem__(self, key)
+
 
 if HAVE_FORMLIB:
     from five.formlib import formbase
     from grokcore.formlib.components import GrokForm as BaseGrokForm
-    from grokcore.formlib.components import default_display_template, \
-        default_form_template
+    from grokcore.formlib.components import default_display_template
+    from grokcore.formlib.components import default_form_template
 
     # forms from formlib
 
@@ -202,16 +202,13 @@ if HAVE_FORMLIB:
             super(GrokForm, self).__init__(*args)
             self.__name__ = self.__view_name__
 
-
     class Form(GrokForm, formbase.PageForm, View):
         martian.baseclass()
         template = default_form_template
 
-
     class AddForm(GrokForm, formbase.AddForm, View):
         martian.baseclass()
         template = default_form_template
-
 
     class EditForm(GrokForm, formbase.EditForm, View):
         martian.baseclass()
@@ -221,9 +218,6 @@ if HAVE_FORMLIB:
         # option here.
         actions = formbase.EditForm.actions
 
-
     class DisplayForm(GrokForm, formbase.DisplayForm, View):
         martian.baseclass()
         template = default_display_template
-
-

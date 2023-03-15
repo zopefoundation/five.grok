@@ -9,19 +9,25 @@
 # WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
-#
-##############################################################################
-
-import unittest
 import doctest
+import re
+import unittest
+
+from pkg_resources import resource_listdir
 
 from Testing.ZopeTestCase import FunctionalDocTestSuite
 from Testing.ZopeTestCase import installProduct
-from Testing.ZopeTestCase.zopedoctest.functional import getRootFolder, sync
+from Testing.ZopeTestCase.zopedoctest.functional import getRootFolder
+from Testing.ZopeTestCase.zopedoctest.functional import sync
+from zope.testing import renormalizing
+
 from five.grok.testing import FunctionalLayer
-from pkg_resources import resource_listdir
+
 
 installProduct('PageTemplates')
+
+checker = renormalizing.RENormalizing([
+    (re.compile(r'urllib.error.HTTPError:', re.M), 'HTTPError:'), ])
 
 
 def suiteFromPackage(name):
@@ -40,10 +46,11 @@ def suiteFromPackage(name):
         dottedname = 'five.grok.ftests.%s.%s' % (name, filename[:-3])
         test = FunctionalDocTestSuite(
             dottedname,
+            checker=checker,
             extraglobs=dict(getRootFolder=getRootFolder,
                             sync=sync),
-            optionflags=(doctest.ELLIPSIS+
-                         doctest.NORMALIZE_WHITESPACE+
+            optionflags=(doctest.ELLIPSIS +
+                         doctest.NORMALIZE_WHITESPACE +
                          doctest.REPORT_NDIFF))
         test.layer = FunctionalLayer
 
@@ -53,6 +60,6 @@ def suiteFromPackage(name):
 
 def test_suite():
     suite = unittest.TestSuite()
-    for name in ['directoryresource', 'view', 'viewlet','form', 'site']:
+    for name in ['directoryresource', 'view', 'viewlet', 'form', 'site']:
         suite.addTest(suiteFromPackage(name))
     return suite

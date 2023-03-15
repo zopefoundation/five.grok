@@ -12,16 +12,13 @@
 #
 ##############################################################################
 
+from Acquisition import aq_inner
+from grokcore import component as grok
+from grokcore.view.interfaces import IGrokView
+from zope import component
+from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.traversing.browser import absoluteurl
 from zope.traversing.browser.interfaces import IAbsoluteURL
-from zope.publisher.interfaces.browser import IBrowserRequest
-
-from grokcore.view.interfaces import IGrokView
-
-from Acquisition import aq_inner
-
-from zope import component
-from grokcore import component as grok
 
 
 class ViewAbsoluteURL(absoluteurl.AbsoluteURL, grok.MultiAdapter):
@@ -41,6 +38,6 @@ class ViewAbsoluteURL(absoluteurl.AbsoluteURL, grok.MultiAdapter):
             (self._obj(), self.request), IAbsoluteURL).breadcrumbs()
 
         obj_breadcrumbs += ({'name': self.context.__view_name__,
-                                'url': self()},)
+                             'url': self()},)
 
         return obj_breadcrumbs

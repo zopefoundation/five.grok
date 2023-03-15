@@ -7,7 +7,7 @@
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@painting")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <p>A common gallery with rembrandt</p>
@@ -16,7 +16,7 @@
 
   >>> root.manfred.manage_permission('View management screens', ['Anonymous',])
   >>> browser.reload()
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <p>A common gallery with rembrandt</p>
@@ -27,11 +27,14 @@
 """
 from five import grok
 
+
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
-    pass
+    grok.context(Mammoth)
+
 
 painting = grok.PageTemplate("""\
 <html>
@@ -41,21 +44,23 @@ painting = grok.PageTemplate("""\
 </html>
 """)
 
-class Museum(grok.ViewletManager):
 
+class Museum(grok.ViewletManager):
+    grok.context(Mammoth)
     grok.view(Painting)
 
 
 class Gallery(grok.Viewlet):
-
+    grok.context(Mammoth)
     grok.view(Painting)
     grok.viewletmanager(Museum)
 
     def render(self):
         return u'<p>A common gallery with rembrandt</p>'
 
-class Reserve(grok.Viewlet):
 
+class Reserve(grok.Viewlet):
+    grok.context(Mammoth)
     grok.view(Painting)
     grok.viewletmanager(Museum)
     grok.require('zope2.ViewManagementScreens')

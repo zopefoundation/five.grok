@@ -6,7 +6,7 @@
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@painting")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <h2>Modern Art</h2>
@@ -15,13 +15,18 @@
   </html>
 
 """
+from zope.interface import Interface
+
 from five import grok
+
 
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
-    pass
+    grok.context(Interface)
+
 
 painting = grok.PageTemplate("""\
 <html>
@@ -32,18 +37,19 @@ painting = grok.PageTemplate("""\
 </html>
 """)
 
-class Art(grok.ViewletManager):
 
+class Art(grok.ViewletManager):
     grok.view(Painting)
+    grok.context(Interface)
 
 
 class Nothing(grok.ViewletManager):
-
+    grok.context(Interface)
     grok.view(Painting)
 
 
 class Modern(grok.Viewlet):
-
+    grok.context(Interface)
     grok.order(10)
     grok.view(Painting)
     grok.viewletmanager(Art)
@@ -53,11 +59,14 @@ modern = grok.PageTemplate("""\
 <h2>Modern Art</h2>
 """)
 
+
 class Classic(grok.Viewlet):
 
+    grok.context(Interface)
     grok.order(20)
     grok.view(Painting)
     grok.viewletmanager(Art)
+
 
 classic = grok.PageTemplate("""\
 <h2>Classic Art</h2>

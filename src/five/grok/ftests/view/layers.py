@@ -6,7 +6,7 @@
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@cavedrawings")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <h1>Hello, world!</h1>
@@ -14,14 +14,17 @@
   </html>
 
   >>> browser.open("http://localhost/++skin++Rotterdam/manfred/@@moredrawings")
-  >>> print browser.contents
+  >>> print(browser.contents)
   Pretty
 
-  >>> browser.open("http://localhost/++skin++myskin/manfred/@@evenmoredrawings")
-  >>> print browser.contents
+  >>> browser.open(
+  ...    "http://localhost/++skin++myskin/manfred/@@evenmoredrawings")
+  >>> print(browser.contents)
   Awesome
 
 """
+from zope.interface import Interface
+
 from five import grok
 
 
@@ -38,7 +41,7 @@ class Mammoth(grok.Model):
 
 
 class CaveDrawings(grok.View):
-    pass
+    grok.context(Interface)
 
 
 cavedrawings = grok.PageTemplate("""\
@@ -51,6 +54,7 @@ cavedrawings = grok.PageTemplate("""\
 
 
 class MoreDrawings(grok.View):
+    grok.context(Interface)
     grok.layer(MyRotterdamLayer)
 
     def render(self):
@@ -59,6 +63,7 @@ class MoreDrawings(grok.View):
 
 class EvenMoreDrawings(grok.View):
     grok.layer(MySkinLayer)
+    grok.context(Interface)
 
     def render(self):
         return "Awesome"

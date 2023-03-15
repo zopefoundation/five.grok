@@ -6,7 +6,7 @@
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@painting")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <p>Art is beautiful</p>
@@ -16,18 +16,22 @@
 """
 from five import grok
 
+
 class Mammoth(grok.Model):
     pass
 
+
 class Painting(grok.View):
-    pass
+    grok.context(Mammoth)
+
 
 class Art(grok.ViewletManager):
-
+    grok.context(Mammoth)
     grok.view(Painting)
 
     def render(self):
         return '<p>Art is beautiful</p>'
+
 
 painting = grok.PageTemplate("""\
 <html>

@@ -20,3 +20,7 @@ The following people helped five.grok development:
 * Adrien Di Dio
 
 * David Glick
+
+* Daniel Havlik
+
+* Steffen Allner

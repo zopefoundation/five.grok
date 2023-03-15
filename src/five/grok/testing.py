@@ -14,10 +14,11 @@
 """Grok test helpers
 """
 
-from Testing.ZopeTestCase.layer import ZopeLite
 from grokcore.component import zcml
+from Testing.ZopeTestCase.layer import ZopeLite
 from zope.component.testlayer import ZCMLFileLayer
 from zope.configuration.config import ConfigurationMachine
+
 import five.grok
 
 
@@ -35,7 +36,6 @@ def grok(module_name):
     config.execute_actions()
 
 
-
 class Zope2FunctionalLayer(ZCMLFileLayer):
 
     def setUp(self):
@@ -48,4 +48,3 @@ class Zope2FunctionalLayer(ZCMLFileLayer):
 
 
 FunctionalLayer = Zope2FunctionalLayer(five.grok)
-

@@ -21,12 +21,17 @@ Regetting the adapter will yield the same annotation storage:
 
 """
 
-from five import grok
-from zope import interface
 from BTrees.OOBTree import OOTreeSet
+from grokcore.annotation.components import Model
+from zope import interface
 
-class Mammoth(grok.Model):
-    pass
+from five import grok
+
+
+class Mammoth(Model):
+    def __init__(self, name):
+        self.name = name
+
 
 class IBranding(interface.Interface):
 
@@ -36,8 +41,10 @@ class IBranding(interface.Interface):
     def getBrands():
         """Return a list of brands."""
 
+
+@interface.implementer(IBranding)
 class Branding(grok.Annotation):
-    grok.implements(IBranding)
+    grok.context(Mammoth)
 
     def __init__(self):
         self._brands = OOTreeSet()

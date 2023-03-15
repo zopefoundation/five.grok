@@ -4,15 +4,17 @@
 
   >>> from Testing.testbrowser import Browser
   >>> browser = Browser()
-  >>> browser.handleErrors = False 
+  >>> browser.handleErrors = False
   >>> browser.open("http://localhost/manfred/@@redirect")
   >>> browser.url
   'http://localhost/manfred/@@newhome'
 """
 from five import grok
 
+
 class Mammoth(grok.Model):
     pass
+
 
 class Redirect(grok.View):
     grok.context(Mammoth)
