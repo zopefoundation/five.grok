@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0 (2023-03-15)
 ----------------
 
 - Pin ``five.localsitemanager>=2.0``.  Avoids problems with newer
