@@ -2,7 +2,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '2.0'
+version = '2.1.dev0'
 
 form_requires = [
     'grokcore.formlib >= 1.4',
