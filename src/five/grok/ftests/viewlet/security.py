@@ -56,7 +56,7 @@ class Gallery(grok.Viewlet):
     grok.viewletmanager(Museum)
 
     def render(self):
-        return u'<p>A common gallery with rembrandt</p>'
+        return '<p>A common gallery with rembrandt</p>'
 
 
 class Reserve(grok.Viewlet):
@@ -66,4 +66,4 @@ class Reserve(grok.Viewlet):
     grok.require('zope2.ViewManagementScreens')
 
     def render(self):
-        return u'<p>Non exposed content</p>'
+        return '<p>Non exposed content</p>'

@@ -46,8 +46,8 @@ from five import grok
 
 class IHouse(interface.Interface):
 
-    name = schema.TextLine(title=u"Name of the building")
-    height = schema.Int(title=u"Number of floors")
+    name = schema.TextLine(title="Name of the building")
+    height = schema.Int(title="Number of floors")
 
 
 @grok.implementer(IHouse)

@@ -25,7 +25,7 @@ from five import grok
 
 
 class Mammoth(grok.Model):
-    teeth = u"Blue"
+    teeth = "Blue"
 
 
 class Index(grok.View):

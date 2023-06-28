@@ -20,7 +20,7 @@ from five import grok
 class Mammoth(grok.Model):
 
     def __init__(self, id):
-        super(Mammoth, self).__init__(id=id)
+        super().__init__(id=id)
         self.id = id
 
 

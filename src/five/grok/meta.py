@@ -100,7 +100,7 @@ class DirectoryResourceGrokker(martian.ClassGrokker):
         # Need to store the module info object on the directory resource
         # class so that it can look up the actual directory.
         factory.module_info = module_info
-        return super(DirectoryResourceGrokker, self).grok(
+        return super().grok(
             name, factory, module_info, **kw)
 
     def execute(self, factory, config, name, path, layer, **kw):

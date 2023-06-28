@@ -46,8 +46,8 @@ from five import grok
 
 class IMammoth(interface.Interface):
 
-    name = schema.TextLine(title=u"Name")
-    age = schema.Int(title=u"Age")
+    name = schema.TextLine(title="Name")
+    age = schema.Int(title="Age")
 
 
 class Mammoth(grok.Model):

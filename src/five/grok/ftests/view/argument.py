@@ -65,7 +65,7 @@ class RenderWithArguments(grok.View):
     grok.name('render')
 
     def render(self, message, another):
-        return "Message: %s\nAnother: %s" % (message, another)
+        return "Message: {}\nAnother: {}".format(message, another)
 
 
 class UpdateWithArguments(grok.View):
