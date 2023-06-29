@@ -41,7 +41,7 @@ class SimpleItemIdAdapter(grok.Adapter):
         return self.context.getId()
 
 
-class A(object):
+class A:
     pass
 
 

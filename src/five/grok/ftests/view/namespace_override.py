@@ -20,14 +20,14 @@ from five import grok
 class Mammoth(grok.Model):
 
     def __init__(self, id):
-        super(Mammoth, self).__init__(id)
+        super().__init__(id)
         self.id = id
 
 
-class CustomViewClass(object):
+class CustomViewClass:
 
     def hello(self):
-        return u'Hello'
+        return 'Hello'
 
 
 class Index(grok.View):

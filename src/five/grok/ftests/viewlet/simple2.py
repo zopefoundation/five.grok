@@ -46,7 +46,7 @@ class Modern(grok.Viewlet):
     grok.viewletmanager(Art)
 
     def render(self):
-        return u'<p>Mordern art is recent</p>'
+        return '<p>Mordern art is recent</p>'
 
 
 class Classic(grok.Viewlet):

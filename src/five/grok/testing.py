@@ -39,12 +39,12 @@ def grok(module_name):
 class Zope2FunctionalLayer(ZCMLFileLayer):
 
     def setUp(self):
-        super(Zope2FunctionalLayer, self).setUp()
+        super().setUp()
         ZopeLite.setUp()
 
     def tearDown(self):
         ZopeLite.tearDown()
-        super(Zope2FunctionalLayer, self).tearDown()
+        super().tearDown()
 
 
 FunctionalLayer = Zope2FunctionalLayer(five.grok)

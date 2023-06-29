@@ -69,7 +69,7 @@ class View(grokcore.view.View):
     martian.baseclass()
 
     def __init__(self, context, request):
-        super(View, self).__init__(context, request)
+        super().__init__(context, request)
         if self.static is not None:
             # Set parent so that we have an acquisition chain
             self.static.__parent__ = context
@@ -85,7 +85,7 @@ class ViewAwareZopePageTemplate(ZopePageTemplate):
         return getEngine()
 
     def pt_getContext(self, instance, request=None, **kw):
-        namespace = super(ViewAwareZopePageTemplate, self).pt_getContext(**kw)
+        namespace = super().pt_getContext(**kw)
         namespace['request'] = request
         namespace['view'] = instance
         namespace['context'] = context = instance.context
@@ -199,7 +199,7 @@ if HAVE_FORMLIB:
     class GrokForm(BaseGrokForm):
 
         def __init__(self, *args):
-            super(GrokForm, self).__init__(*args)
+            super().__init__(*args)
             self.__name__ = self.__view_name__
 
     class Form(GrokForm, formbase.PageForm, View):
