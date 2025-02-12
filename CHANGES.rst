@@ -4,7 +4,7 @@ Changelog
 4.0 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Drop support for pkg_resources namespace and replace it with PEP 420 native namespace.
 
 
 3.0 (2023-06-29)
