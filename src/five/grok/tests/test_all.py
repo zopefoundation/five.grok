@@ -20,7 +20,7 @@ from Testing.ZopeTestCase import FunctionalDocTestSuite
 from five.grok.testing import FunctionalLayer
 
 
-options = doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE
+options = doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE
 
 
 def test_suite():
