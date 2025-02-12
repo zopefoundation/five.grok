@@ -1,4 +1,4 @@
-from setuptools import find_packages
+from setuptools import find_namespace_packages
 from setuptools import setup
 
 
@@ -38,9 +38,8 @@ setup(name='five.grok',
       author_email='zope-dev@zope.dev',
       url='https://github.com/zopefoundation/five.grok',
       license='ZPL',
-      packages=find_packages('src'),
+      packages=find_namespace_packages('src'),
       package_dir={'': 'src'},
-      namespace_packages=['five'],
       include_package_data=True,
       zip_safe=False,
       python_requires='>=3.7',
