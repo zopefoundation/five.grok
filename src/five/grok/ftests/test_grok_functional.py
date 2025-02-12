@@ -43,7 +43,7 @@ def suiteFromPackage(name):
             # annoying.
             continue
 
-        dottedname = 'five.grok.ftests.{}.{}'.format(name, filename[:-3])
+        dottedname = f'five.grok.ftests.{name}.{filename[:-3]}'
         test = FunctionalDocTestSuite(
             dottedname,
             checker=checker,
