@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0 (unreleased)
+4.0 (2025-02-15)
 ----------------
 
 - Drop support for ``pkg_resources`` namespace and replace it with

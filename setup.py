@@ -1,7 +1,7 @@
 from setuptools import setup
 
 
-version = '4.0.dev0'
+version = '4.0'
 
 form_requires = [
     'grokcore.formlib >= 1.4',
