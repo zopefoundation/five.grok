@@ -12,8 +12,7 @@
 import doctest
 import re
 import unittest
-
-from pkg_resources import resource_listdir
+from importlib.resources import files
 
 from Testing.ZopeTestCase import FunctionalDocTestSuite
 from Testing.ZopeTestCase import installProduct
@@ -31,9 +30,11 @@ checker = renormalizing.RENormalizing([
 
 
 def suiteFromPackage(name):
-    files = resource_listdir(__name__, name)
+    package_files = files('five.grok.ftests').joinpath(name)
+    files_list = [f.name for f in package_files.iterdir()]
+
     suite = unittest.TestSuite()
-    for filename in files:
+    for filename in files_list:
         if not filename.endswith('.py'):
             continue
         if filename == '__init__.py':
