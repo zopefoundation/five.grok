@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "five.grok"
-version = "4.1.dev0"
+version = "4.1"
 description = "Grok-like layer for Zope"
 license = "ZPL-2.1"
 classifiers = [
